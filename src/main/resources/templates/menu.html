@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="hu" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div xmlns:th="http://www.thymeleaf.org"
+     xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">6os Lottó KFT.</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav" sec:authorize="isAnonymous()">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/nyeremenyek">Nyeremények</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/visszajelzesek}">Visszajelzések</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/login}">Belépés</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/regisztral}">Regisztrál</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/urlap1}">Ürlap</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav" sec:authorize="isAuthenticated()">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" th:href="@{/}">Kezdőlap</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/nyeremenyek">Nyeremények</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/visszajelzesek}">Visszajelzések</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/urlap1}">Ürlap</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/urlap1}">Ürlap</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/home}">Belépett felhasználó fül</a>
+                    </li>
+                    <li class="nav-item" sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a class="nav-link" th:href="@{/admin/home}">Admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/logout}">Kijelentkezés</a>
+                    </li>
+                </ul>
+                <div class="fejlecNev" sec:authorize="isAuthenticated()">
+                    <strong sec:authentication="principal.username"></strong>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+</div>
+
+</body>
+</html>
